@@ -9,12 +9,34 @@ use Illuminate\Database\Eloquent\Model;
 class Products extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'name',
+        'description',
+        'price',
+        'quantiy',
+        'image',
+        'store_id',
+        'category_id',
+        'discount_price',
+        'brand',
+        'on_sale',
+        'trending',
+        'main_slider',
+        'mid_slider',
+        'size',
+        'status',
+        'subcategory_id'
+    ];
     public function store(){
         return $this->belongsTo(Stores::class);
     }
     public function category(){
         return $this->belongsTo(Categories::class);
     }
+    public function subcategory(){
+        return $this->belongsTo(Subcategory::class);
+    }
+  
     public function scopeSearch($query, $search){
         return $query->where('name', 'LIKE', '%' . $search . "%");
     }

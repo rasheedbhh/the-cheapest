@@ -18,10 +18,10 @@ class Stores extends Model
     ];
 
     public function manager(){
-        return $this->hasOne(User::class,'id');
+        return $this->belongsTo(User::class);
     }
 
     public function products(){
-        return $this->hasMany(Products::class,'store_id');    
+        return $this->hasMany(Products::class);    
     }
 }

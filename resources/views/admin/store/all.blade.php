@@ -29,7 +29,7 @@
                      </tr>
                     </thead>
                     <tbody>
-                        @foreach ($stores as $key=>$store )
+                        @foreach ($stores as $key=>$store)
                             <tr>
                                 <td>{{$key+1}}</td>
                                 <td>{{$store->name}}</td>

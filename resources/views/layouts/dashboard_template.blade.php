@@ -32,6 +32,7 @@
 
     <!-- vendor css -->
     <link href="{{asset('backend/lib/font-awesome/css/font-awesome.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('backend/lib/fontawesome-free-5.15.4-web/css/font-awesome.css')}}">
     <link href="{{asset('backend/lib/Ionicons/css/ionicons.css')}}" rel="stylesheet">
     <link href="{{asset('backend/lib/perfect-scrollbar/css/perfect-scrollbar.css')}}" rel="stylesheet">
     <link href="{{asset('backend/lib/rickshaw/rickshaw.min.css')}}" rel="stylesheet">
@@ -71,29 +72,6 @@
          
          <a href="#" class="sl-menu-link">
           <div class="sl-menu-item">
-            <i class="menu-item-icon icon ion-ios-bookmarks-outline tx-20"></i>
-            <span class="menu-item-label">Products</span>
-            <i class="menu-item-arrow fa fa-angle-down"></i>
-          </div><!-- menu-item -->
-        </a><!-- sl-menu-link -->
-        <ul class="sl-menu-sub nav flex-column">
-           <li class="nav-item"><a href="" class="nav-link">All Products</a></li>
-          <li class="nav-item"><a href="" class="nav-link">Add Product</a></li> 
-        </ul>
-         <a href="#" class="sl-menu-link">
-           <div class="sl-menu-item">
-             <i class="menu-item-icon ion-ios-pie-outline tx-20"></i>
-             <span class="menu-item-label">Category</span>
-             <i class="menu-item-arrow fa fa-angle-down"></i>
-           </div><!-- menu-item -->
-         </a><!-- sl-menu-link -->
-         <ul class="sl-menu-sub nav flex-column">
-           <li class="nav-item"><a href="{{route('add.category')}}" class="nav-link">Add Category</a></li>
-           <li class="nav-item"><a href="{{route('all.categories')}}" class="nav-link">All Categories</a></li>
-         </ul>
-
-         <a href="#" class="sl-menu-link">
-          <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-person-stalker tx-20"></i>
             <span class="menu-item-label">Users</span>
             <i class="menu-item-arrow fa fa-angle-down"></i>
@@ -106,9 +84,48 @@
             <a href="{{route('all.users')}}" class="nav-link">All users</a></li>
         </ul>
 
+   
+
+         <a href="#" class="sl-menu-link">
+           <div class="sl-menu-item">
+             <i class="menu-item-icon ion-ionic tx-20"></i>
+             <span class="menu-item-label">Categories</span>
+             <i class="menu-item-arrow fa fa-angle-down"></i>
+           </div><!-- menu-item -->
+         </a><!-- sl-menu-link -->
+         <ul class="sl-menu-sub nav flex-column">
+           <li class="nav-item"><a href="{{route('add.category')}}" class="nav-link">Add Category</a></li>
+           <li class="nav-item"><a href="{{route('all.categories')}}" class="nav-link">All Categories</a></li>
+         </ul>
+
+         <a href="#" class="sl-menu-link">
+          <div class="sl-menu-item">
+            <i class="menu-item-icon ion-ios-pie-outline tx-20"></i>
+            <span class="menu-item-label">Subcategories</span>
+            <i class="menu-item-arrow fa fa-angle-down"></i>
+          </div><!-- menu-item -->
+        </a><!-- sl-menu-link -->
+        <ul class="sl-menu-sub nav flex-column">
+          <li class="nav-item"><a href="{{route('add.subcategory')}}" class="nav-link">Add Subcategory</a></li>
+          <li class="nav-item"><a href="{{route('all.subcategories')}}" class="nav-link">All Subcategories</a></li>
+        </ul>
+
         <a href="#" class="sl-menu-link">
           <div class="sl-menu-item">
-            <i class="menu-item-icon icon ion-compass tx-20"></i>
+            <i class="menu-item-icon icon ion-pricetags tx-20"></i>
+            <span class="menu-item-label">Products</span>
+            <i class="menu-item-arrow fa fa-angle-down"></i>
+          </div><!-- menu-item -->
+        </a><!-- sl-menu-link -->
+        <ul class="sl-menu-sub nav flex-column">
+           <li class="nav-item"><a href="{{url('admin/all/products')}}" class="nav-link">All Products</a></li>
+          <li class="nav-item"><a href="" class="nav-link">Add Product</a></li> 
+        </ul>
+
+     
+        <a href="#" class="sl-menu-link">
+          <div class="sl-menu-item">
+            <i class="menu-item-icon ion-bag tx-20"></i>
             <span class="menu-item-label">Stores</span>
             <i class="menu-item-arrow fa fa-angle-down"></i>
           </div><!-- menu-item -->
@@ -122,7 +139,7 @@
 
         <a href="#" class="sl-menu-link">
           <div class="sl-menu-item">
-            <i class="menu-item-icon icon ion-briefcase tx-20"></i>
+            <i class="menu-item-icon icon ion-cash tx-20"></i>
             <span class="menu-item-label">Orders</span>
             <i class="menu-item-arrow fa fa-angle-down"></i>
           </div><!-- menu-item -->
@@ -460,20 +477,20 @@
         <script src="{{asset('https://unpkg.com/sweetalert/dist/sweetalert.min.js')}}"></script>
        
            <script>
-        @if(Session::has('messege'))
+        @if(Session::has('message'))
           var type="{{Session::get('alert-type','info')}}"
           switch(type){
               case 'info':
-                   toastr.info("{{ Session::get('messege') }}");
+                   toastr.info("{{ Session::get('message') }}");
                    break;
               case 'success':
-                  toastr.success("{{ Session::get('messege') }}");
+                  toastr.success("{{ Session::get('message') }}");
                   break;
               case 'warning':
-                 toastr.warning("{{ Session::get('messege') }}");
+                 toastr.warning("{{ Session::get('message') }}");
                   break;
               case 'error':
-                  toastr.error("{{ Session::get('messege') }}");
+                  toastr.error("{{ Session::get('message') }}");
                   break;
           }
         @endif

@@ -11,4 +11,11 @@ class Categories extends Model
     protected $fillable = [
         'category_name'
     ];
+    public function subcategories(){
+        return $this->hasMany(Subcategory::class);
+    }
+    public function products(){
+        return $this->hasMany(Products::class);    
+    }
+
 }

@@ -9,8 +9,8 @@
       
             <div class="card pd-20 pd-sm-40">
       
-              <h6 class="card-body-title">User categories
-                  <a href="{{route('add.user')}}" class="btn btn-sm btn-warning" style="float: right;" >Add new user</a>
+              <h6 class="card-body-title">Product categories
+                  <a href="{{route('add.user')}}" class="btn btn-sm btn-warning" style="float: right;" >Add new category</a>
               </h6>
               
       
