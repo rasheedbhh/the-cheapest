@@ -260,7 +260,7 @@ class AdminController extends Controller
     public function offSale($id){
         Products::where('id',$id)->update(['on_sale'=>0]);
         $notification=array(
-            'message'=>'Product is now inactive!',
+            'message'=>'Product is not on sale!',
             'alert-type'=>'error'
         );
         return redirect()->back()->with($notification);
@@ -269,7 +269,7 @@ class AdminController extends Controller
     public function onSale($id){
         Products::where('id',$id)->update(['on_sale'=>1]);
         $notification=array(
-            'message'=>'Product is now active!',
+            'message'=>'Product is now on sale!',
             'alert-type'=>'success'
         );
         return redirect()->back()->with($notification);
@@ -278,7 +278,7 @@ class AdminController extends Controller
     public function makeTrending($id){
         Products::where('id',$id)->update(['trending'=>1]);
         $notification=array(
-            'message'=>'Product is now inactive!',
+            'message'=>'Product is now trending!',
             'alert-type'=>'error'
         );
         return redirect()->back()->with($notification);
@@ -287,7 +287,7 @@ class AdminController extends Controller
     public function offTrending($id){
         Products::where('id',$id)->update(['trending'=>0]);
         $notification=array(
-            'message'=>'Product is now active!',
+            'message'=>'Product is not trending!',
             'alert-type'=>'success'
         );
         return redirect()->back()->with($notification);
@@ -296,7 +296,7 @@ class AdminController extends Controller
     public function mainSliderInactive($id){
         Products::where('id',$id)->update(['main_slider'=>0]);
         $notification=array(
-            'message'=>'Product is now inactive!',
+            'message'=>'Product is not diplayed on the main slider!',
             'alert-type'=>'error'
         );
         return redirect()->back()->with($notification);
@@ -305,7 +305,7 @@ class AdminController extends Controller
     public function mainSliderActive($id){
         Products::where('id',$id)->update(['main_slider'=>1]);
         $notification=array(
-            'message'=>'Product is now active!',
+            'message'=>'Product is now diplayed on the main slider!',
             'alert-type'=>'success'
         );
         return redirect()->back()->with($notification);
@@ -314,7 +314,7 @@ class AdminController extends Controller
     public function midSliderInactive($id){
         Products::where('id',$id)->update(['mid_slider'=>0]);
         $notification=array(
-            'message'=>'Product is now inactive!',
+            'message'=>'Product is not diplayed on the main slider',
             'alert-type'=>'error'
         );
         return redirect()->back()->with($notification);
@@ -323,7 +323,7 @@ class AdminController extends Controller
     public function midSliderActive($id){
         Products::where('id',$id)->update(['mid_slider'=>1]);
         $notification=array(
-            'message'=>'Product is now active!',
+            'message'=>'Product is now diplayed on the main slider!',
             'alert-type'=>'success'
         );
         return redirect()->back()->with($notification);

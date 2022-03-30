@@ -9,6 +9,7 @@
     <nav class="breadcrumb sl-breadcrumb">
       <a class="breadcrumb-item" href="index.html">The Cheapest</a>
       <span class="breadcrumb-item active">Admin Section</span>
+      <span class="breadcrumb-item active">Add User</span>
     </nav>
 
     <div class="sl-pagebody">
@@ -53,8 +54,13 @@
               </div><!-- col-4 -->
               <div class="col-lg-4">
                 <div class="form-group">
-                  <label class="form-control-label">Role ID</label>
-                  <input class="form-control" type="text" name="role_id"  placeholder="Enter 1 for admin, 2 for store manager,3 for regular user">
+                  <label class="form-control-label">Role</label>
+                  <select class="form-control select2" data-placeholder="Choose role" name="role_id">
+                    <option label="Choose Role"></option>
+                    <option label="Admin" value="1"></option>
+                    <option label="Store Manager" value="2"></option>
+                    <option label="User" value="3"></option>
+                  </select>
                 </div>
               </div><!-- col-4 -->
             </div>  

@@ -20,7 +20,7 @@
         </div><!-- sl-page-title -->
 
         <div class="card pd-20 pd-sm-40">
-          <h6 class="card-body-title">Add user data</h6>
+          <h6 class="card-body-title">Edit user data</h6>
         
           <form action="{{url('admin/update/user/'.$user->id)}}" method="POST" enctype="multipart/form-data">
             @csrf
@@ -53,8 +53,24 @@
               </div><!-- col-4 -->
               <div class="col-lg-4">
                 <div class="form-group">
-                  <label class="form-control-label">Role ID</label>
-                  <input class="form-control" type="text" name="role_id"  placeholder="Enter 1 for admin, 2 for store manager,3 for regular user" value="{{$user->role_id}}">
+                  <label class="form-control-label">Role (Current role : 
+                    @php
+                        $role_id = $user->role_id;
+                        $role = '';
+                        if($role_id==1)
+                          $role = 'Admin';    
+                        if($role_id ==2)
+                          $role = 'Store Manager'; 
+                        if ($role_id==3) 
+                          $role = 'User';
+                    @endphp
+                    {{$role}} )</label>
+                  <select class="form-control select2" data-placeholder="Choose role" name="role_id">
+                    <option label="Choose role"></option>
+                    <option label="Admin" value="1"></option>
+                    <option label="Store Manager" value="2"></option>
+                    <option label="User" value="3"></option>
+                  </select>
                 </div>
               </div><!-- col-4 -->
             </div>  

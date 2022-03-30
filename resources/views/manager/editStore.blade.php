@@ -20,7 +20,7 @@
         <div class="card pd-20 pd-sm-40">
           <h6 class="card-body-title">Update your store information</h6>
         
-          <form action="{{route('update.store')}}" method="POST" enctype="multipart/form-data">
+          <form action="{{route('manager.update.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
           <div class="form-layout">
             <div class="row mg-b-25">

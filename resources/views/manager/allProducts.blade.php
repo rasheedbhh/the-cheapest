@@ -15,7 +15,7 @@
       <div class="card pd-20 pd-sm-40">
 
         <h6 class="card-body-title">All Products
-            <a href="{{route('insert.product')}}" class="btn btn-sm btn-primary" style="float: right;">Add new</a>
+            <a href="{{route('manager.insert.product')}}" class="btn btn-sm btn-primary" style="float: right;">Add new</a>
         </h6>
         
 
@@ -31,7 +31,7 @@
                 <th class="wd-5p">Image</th>
                 <th class="wd-5p">Quantity</th>
                 <th class="wd-5p">Price</th>
-                <th class="wd-5p">Size</th>
+                <th class="wd-5p">Weight</th>
                 <th class="wd-5p">Status</th>
                 <th class="wd-5p">Action</th>
                
@@ -43,13 +43,12 @@
                 <td>{{$product->name}}</td>
                 <td>{{$product->brand}}</td>
                 <td>{{$product->category->category_name}}</td>
-                {{-- <td>{{$product->subcategory->name}}</td> --}}
+                <td>{{$product->subcategory->name}}</td>
                 <td>{{$product->store->name}}</td>
                 <td><img src="{{URL::to($product->image)}}" style="height:40px" alt="Image not shown"></td>
-                
                 <td>{{$product->quantity}}</td> 
-                <td>{{$product->price}}</td>
-                <td>{{$product->size}}</td>
+                <td>{{$product->price}}L.L</td>
+                <td>{{$product->weight}}</td>
 
                 <td>  
                 @if ($product->status ==1)

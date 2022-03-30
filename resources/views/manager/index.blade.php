@@ -22,7 +22,7 @@
         <div class="card pd-20 pd-sm-40">
           <h6 class="card-body-title">Insert your store information</h6>
         
-          <form action="{{route('insert.store')}}" method="POST" enctype="multipart/form-data">
+          <form action="{{route('manager.insert.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
           <div class="form-layout">
             <div class="row mg-b-25">

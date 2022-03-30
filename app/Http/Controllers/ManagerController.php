@@ -73,7 +73,7 @@ class ManagerController extends Controller
     }
 
     public function getProducts(){
-        $products = Products::with('store','category','subcategory')->where('store_id',3)->get();
+        $products = Products::with('store','category','subcategory','manager')->where('manager_id',Auth::user()->id)->get();
         return view('manager.allProducts',compact('products'));
     }
 
@@ -96,23 +96,24 @@ class ManagerController extends Controller
         $data = array();
         $data['name'] = $request->name;
         $data['description'] = $request->description;
-        $data['size'] = $request->size;
+        $data['weight'] = $request->weight;
         $data['quantity'] = $request->quantity;
         $data['brand'] = $request->brand;
         $data['price'] = $request->price ;
-        $data['discount_price'] = $request->discount_price ;
+        $data['discount_price'] = $request->discount_price;
+        $data['manager_id'] = Auth::user()->id;
         $data['category_id'] = $request->category; 
         $data['subcategory_id'] = $request->subcategory;  
         $data['image'] = $profile_picture;
         $data['store_id'] = $request->store_id;
-        $data['status'] = 1;
+        // $data['status'] = 1;
         $data['created_at'] = Carbon::now();
         $data['updated_at'] = Carbon::now();
         DB::table('products')->insert($data);
         // Products::create([
         //     'name' => $request->name,
         //     'description' => $request->description,
-        //     'size' => $request->size,
+        //     'weight' => $request->weight,
         //     'quantity' => $request->quantity,
         //     'brand' => $request->brand,
         //     'price' => $request->price,
@@ -134,12 +135,43 @@ class ManagerController extends Controller
         return json_decode($subcategories); 
     }
 
-    public function editProduct(){
-
+    public function editProduct($id){
+        $categories = Categories::all();
+        $subcategories = Subcategory::all();
+        $store = Stores::with('manager')->where('manager_id',Auth::user()->id)->first();
+        $product = Products::with('subcategory','category','manager','store')->where('id',$id)->first();
+        return view('manager.editProduct',compact('product','store','subcategories','categories'));
     }
 
-    public function updateProduct(){
-
+    public function updateProduct($id, Request $request){
+        $old_image = $request->old_image;
+        $profile_picture = '';
+        $image = $request->image;
+        if($image){
+            $image_name = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+            Image::make($image)->resize(400,400)->save('images/stores/'.$image_name);
+            $profile_picture = 'images/stores/'.$image_name;
+            unlink($old_image);
+        }
+        $data = array();
+        $data['name'] = $request->name;
+        $data['description'] = $request->description;
+        $data['weight'] = $request->weight;
+        $data['quantity'] = $request->quantity;
+        $data['brand'] = $request->brand;
+        $data['price'] = $request->price ;
+        $data['discount_price'] = $request->discount_price;
+        $data['manager_id'] = Auth::user()->id;
+        $data['category_id'] = $request->category; 
+        $data['subcategory_id'] = $request->subcategory;  
+        $data['image'] = $profile_picture;
+        $data['updated_at'] = Carbon::now();
+        DB::table('products')->where('id',$id)->update($data);
+        $notification=array(
+            'message'=>'Product updated successfully',
+            'alert-type'=>'success'
+        );
+        return redirect()->back()->with($notification);
     }
 
     public function makeInactive($id){

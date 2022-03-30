@@ -68,13 +68,13 @@ Route::group(['middleware' => 'role:admin', 'prefix' => 'admin'], function() {
 //Manager Routes
 Route::group(['middleware' => 'role:manager', 'prefix' => 'manager'], function() {
 
-    Route::post('insert/store', 'ManagerController@insertStore')->name('insert.store');
-    Route::get('edit/store', 'ManagerController@editStore')->name('edit.store');
-    Route::post('update/store', 'ManagerController@updateStore')->name('update.store');
+    Route::post('insert/store', 'ManagerController@insertStore')->name('manager.insert.store');
+    Route::get('edit/store', 'ManagerController@editStore')->name('manager.edit.store');
+    Route::post('update/store', 'ManagerController@updateStore')->name('manager.update.store');
 
-    Route::get('all/products', 'ManagerController@getProducts')->name('all.products');
-    Route::get('add/product', 'ManagerController@addProduct')->name('add.product');
-    Route::post('insert/product', 'ManagerController@insertProduct')->name('insert.product');
+    Route::get('all/products', 'ManagerController@getProducts')->name('manager.all.products');
+    Route::get('add/product', 'ManagerController@addProduct')->name('manager.add.product');
+    Route::post('insert/product', 'ManagerController@insertProduct')->name('manager.insert.product');
     Route::get('edit/product/{id}', 'ManagerController@editProduct');
     Route::post('update/product/{id}', 'ManagerController@updateProduct');
     Route::get('activate/product/{id}', 'ManagerController@makeActive');

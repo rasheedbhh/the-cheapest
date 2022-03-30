@@ -23,7 +23,7 @@ class Products extends Model
         'trending',
         'main_slider',
         'mid_slider',
-        'size',
+        'weight',
         'status',
         'subcategory_id'
     ];
@@ -35,6 +35,9 @@ class Products extends Model
     }
     public function subcategory(){
         return $this->belongsTo(Subcategory::class);
+    }
+    public function manager(){
+        return $this->belongsTo(User::class);
     }
   
     public function scopeSearch($query, $search){

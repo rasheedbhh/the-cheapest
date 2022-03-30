@@ -14,9 +14,7 @@
 
     <div class="card pd-20 pd-sm-40">
 
-      <h6 class="card-body-title">All Products
-          {{-- <a href="{{route('insert.product')}}" class="btn btn-sm btn-primary" style="float: right;">Add new</a> --}}
-      </h6>
+      <h6 class="card-body-title">All Products</h6>
       
 
       <div class="table-wrapper">
@@ -26,9 +24,9 @@
               <th class="wd-5p">Name</th>
               <th class="wd-5p">Brand</th>
               <th class="wd-5p">Category</th>
-              {{-- <th class="wd-5p">Subcategory</th> --}}
+              <th class="wd-5p">Subcategory</th>
               <th class="wd-5p">Store name</th>
-              <th class="wd-5p">Image</th>
+              {{-- <th class="wd-5p">Image</th> --}}
               <th class="wd-5p">Quantity</th>
               <th class="wd-5p">Price</th>
               <th class="wd-5p">Size</th>
@@ -42,13 +40,12 @@
               <td>{{$product->name}}</td>
               <td>{{$product->brand}}</td>
               <td>{{$product->category->category_name}}</td>
-              {{-- <td>{{$product->subcategory->name}}</td> --}}
+              <td>{{$product->subcategory->name}}</td>
               <td>{{$product->store->name}}</td>
-              <td><img src="{{URL::to($product->image)}}" style="height:40px" alt="Image not shown"></td>
-              
+              {{-- <td><img src="{{URL::to($product->image)}}" style="height:40px" alt="Image not shown"></td> --}}
               <td>{{$product->quantity}}</td> 
-              <td>{{$product->price}}</td>
-              <td>{{$product->size}}</td>
+              <td>{{$product->price}}L.L</td>
+              <td>{{$product->weight}}</td>
 
               <td>  
               @if ($product->status ==1)
@@ -58,12 +55,7 @@
               @endif 
               </td>
                <td>    
-                  <a href="{{URL::to('admin/edit/product/'.$product->id)}}" class="btn btn-info btn-sm" title="Edit">
-                  <i class="fa fa-edit"></i></a>
-
-                  <a href="{{URL::to('admin/delete/product/'.$product->id)}}" class="btn btn-danger btn-sm" title="Delete" id="delete">
-                      <i class="fa fa-trash"></i></a>
-
+            
                     @if ($product->status == 1 )
                       <a href="{{URL::to('admin/deactivate/product/'.$product->id)}}" class="btn btn-danger btn-sm" title="Make Inactive"><i class="fa fa-thumbs-down"></i></a>  
                     @else
@@ -73,25 +65,25 @@
                     @if ($product->trending == 1 )
                     <a href="{{URL::to('admin/notTrending/product/'.$product->id)}}" class="btn btn-danger btn-sm" title="Toggle trending on"><i class="fa fa-fire"></i></a>  
                     @else
-                     <a href="{{URL::to('admin/trending/product/'.$product->id)}}" class="btn btn-primary btn-sm" title="Toggle trending off" ><i class="fas fa-fire"></i></a>  
+                     <a href="{{URL::to('admin/trending/product/'.$product->id)}}" class="btn btn-primary btn-sm" title="Toggle trending off" ><i class="fa fa-fire"></i></a>  
                     @endif
 
                     @if ($product->on_sale == 1 )
-                    <a href="{{URL::to('admin/notOnSale/product/'.$product->id)}}" class="btn btn-danger btn-sm" title="Make on sale"><i class="fa fa-thumbs-down"></i></a>  
+                    <a href="{{URL::to('admin/notOnSale/product/'.$product->id)}}" class="btn btn-danger btn-sm" title="Make on sale"><i class="fa fa-money"></i></a>  
                     @else
-                    <a href="{{URL::to('admin/onSale/product/'.$product->id)}}" class="btn btn-primary btn-sm" title="Not on sale" ><i class="fa fa-thumbs-up"></i></a>  
+                    <a href="{{URL::to('admin/onSale/product/'.$product->id)}}" class="btn btn-primary btn-sm" title="Not on sale" ><i class="fa fa-money"></i></a>  
                     @endif
 
                     @if ($product->main_slider == 1 )
-                    <a href="{{URL::to('admin/notMainSlider/product/'.$product->id)}}" class="btn btn-danger btn-sm" title="Toggle main slider on"><i class="fa fa-thumbs-down"></i></a>  
+                    <a href="{{URL::to('admin/notMainSlider/product/'.$product->id)}}" class="btn btn-danger btn-sm" title="Toggle main slider on"><i class="fa fa-star"></i></a>  
                     @else
-                    <a href="{{URL::to('admin/mainSlider/product/'.$product->id)}}" class="btn btn-primary btn-sm" title="Toggle main slider off" ><i class="fa fa-thumbs-up"></i></a>  
+                    <a href="{{URL::to('admin/mainSlider/product/'.$product->id)}}" class="btn btn-primary btn-sm" title="Toggle main slider off" ><i class="fa fa-star"></i></a>  
                     @endif
 
                     @if ($product->mid_slider == 1 )
-                    <a href="{{URL::to('admin/notMidSlider/product/'.$product->id)}}" class="btn btn-danger btn-sm" title="Toggle mid slider on"><i class="fa fa-thumbs-down"></i></a>  
+                    <a href="{{URL::to('admin/notMidSlider/product/'.$product->id)}}" class="btn btn-danger btn-sm" title="Toggle mid slider on"><i class="fa fa-tasks"></i></a>  
                     @else
-                    <a href="{{URL::to('admin/midSlider/product/'.$product->id)}}" class="btn btn-primary btn-sm" title="Toggle mid slider off" ><i class="fa fa-thumbs-up"></i></a>  
+                    <a href="{{URL::to('admin/midSlider/product/'.$product->id)}}" class="btn btn-primary btn-sm" title="Toggle mid slider off" ><i class="fa fa-tasks"></i></a>  
                     @endif
 
                 
