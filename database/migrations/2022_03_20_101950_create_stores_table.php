@@ -20,6 +20,7 @@ class CreateStoresTable extends Migration
             $table->string('phone_number');
             $table->foreignId('manager_id')->unsigned();
             $table->foreign('manager_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('profile_picture')->nullable();            
             $table->timestamps();
         });
     }

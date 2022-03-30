@@ -24,6 +24,15 @@ class CreateProductsTable extends Migration
             $table->foreign('store_id')->references('id')->on('stores')->onDelete('cascade');
             $table->foreignId('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreignId('subcategory_id')->unsigned();
+            $table->foreign('subcategory_id')->references('id')->on('subcategories')->onDelete('cascade');
+            $table->integer('discount_price')->nullable();
+            $table->integer('size');
+            $table->string('brand');
+            $table->boolean('on_sale')->nullable();
+            $table->boolean('trending')->nullable();
+            $table->boolean('main_slider')->nullable();
+            $table->boolean('mid_slider')->nullable();
             $table->timestamps();
         });
     }

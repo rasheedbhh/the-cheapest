@@ -53,16 +53,16 @@ Route::group(['middleware' => 'role:admin', 'prefix' => 'admin'], function() {
     Route::get('delete/store/{id}', 'AdminController@deleteStore');
     //admin/products routes
     Route::get('all/products', 'AdminController@getProducts')->name('all.products');
-    Route::get('activate/product/{id}', 'ManagerController@makeActive');
-    Route::get('deactivate/product/{id}', 'ManagerController@makeInactive');
-    Route::get('onSale/product/{id}', 'ManagerController@onSale');
-    Route::get('notOnSale/product/{id}', 'ManagerController@offSale');
-    Route::get('trending/product/{id}', 'ManagerController@makeTrending');
-    Route::get('notTrending/product/{id}', 'ManagerController@offTrending');
-    Route::get('mainSlider/product/{id}', 'ManagerController@mainSliderActive');
-    Route::get('notMainslider/product/{id}', 'ManagerController@mainSliderInactive');
-    Route::get('midSlider/product/{id}', 'ManagerController@midSliderActive');
-    Route::get('notminSlider/product/{id}', 'ManagerController@midSliderInactive');
+    Route::get('activate/product/{id}', 'AdminController@makeActive');
+    Route::get('deactivate/product/{id}', 'AdminController@makeInactive');
+    Route::get('onSale/product/{id}', 'AdminController@onSale');
+    Route::get('notOnSale/product/{id}', 'AdminController@offSale');
+    Route::get('trending/product/{id}', 'AdminController@makeTrending');
+    Route::get('notTrending/product/{id}', 'AdminController@offTrending');
+    Route::get('mainSlider/product/{id}', 'AdminController@mainSliderActive');
+    Route::get('notMainslider/product/{id}', 'AdminController@mainSliderInactive');
+    Route::get('midSlider/product/{id}', 'AdminController@midSliderActive');
+    Route::get('notminSlider/product/{id}', 'AdminController@midSliderInactive');
 });
 
 //Manager Routes
