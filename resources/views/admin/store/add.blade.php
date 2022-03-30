@@ -1,6 +1,7 @@
 @extends('layouts.dashboard_template')
 <link href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css" rel="stylesheet"/>
 <link href="{{asset('backend/lib/summernote/summernote-bs4.css')}}" rel="stylesheet">
+<title>The Cheapest | Admin | Add Store</title>  
 @section('content')
  <!-- ########## START: MAIN PANEL ########## -->
  <div class="sl-mainpanel">

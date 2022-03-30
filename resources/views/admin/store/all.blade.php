@@ -1,5 +1,6 @@
 @extends('layouts.dashboard_template')
 @section('content')
+<title>The Cheapest | Admin | All Users</title>  
     <div class="sl-mainpanel">
         <div class="sl-pagebody">
             <div class="sl-page-title">

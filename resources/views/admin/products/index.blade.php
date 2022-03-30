@@ -1,6 +1,6 @@
 @extends('layouts.dashboard_template')
 @section('content')
-    
+<title>The Cheapest | Admin | All Products</title>  
 
 <!-- ########## START: MAIN PANEL ########## -->
 <div class="sl-mainpanel">

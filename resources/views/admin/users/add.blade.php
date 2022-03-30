@@ -1,6 +1,6 @@
 @extends('layouts.dashboard_template')
 
-
+<title>The Cheapest | Admin | Add User</title>  
 <link href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css" rel="stylesheet"/>
 <link href="{{asset('backend/lib/summernote/summernote-bs4.css')}}" rel="stylesheet">
 @section('content')

@@ -1,4 +1,5 @@
 @extends('layouts.dashboard_template')
+<title>The Cheapest | Admin | Add Subcategory</title>  
 @section('content')
 <div class="sl-mainpanel">
     <nav class="breadcrumb sl-breadcrumb">

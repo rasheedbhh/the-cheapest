@@ -1,4 +1,5 @@
 @extends('layouts.dashboard_template')
+<title>The Cheapest | Admin | All Categories</title>  
 @section('content')
     <div class="sl-mainpanel">
         <div class="sl-pagebody">

@@ -1,6 +1,6 @@
   @extends('layouts.dashboard_template')
   @section('content')
-      
+  <title>The Cheapest | Manager | My Products</title>    
 
   <!-- ########## START: MAIN PANEL ########## -->
   <div class="sl-mainpanel">
@@ -14,7 +14,7 @@
 
       <div class="card pd-20 pd-sm-40">
 
-        <h6 class="card-body-title">All Products
+        <h6 class="card-body-title">My Products
             <a href="{{route('manager.insert.product')}}" class="btn btn-sm btn-primary" style="float: right;">Add new</a>
         </h6>
         
