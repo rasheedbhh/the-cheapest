@@ -1,6 +1,7 @@
 @extends('layouts.dashboard_template')
-@section('content')
 <title>The Cheapest | Manager | Home</title>
+@section('content')
+
     @if ($store != NULL)
         <div class="sl-mainpanel"> 
           <div class="sl-pagebody">
