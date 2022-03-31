@@ -5,7 +5,9 @@
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />
-
+        <div>
+            <h1 class="text-center mb-3">Create your account</h1>
+        </div>
         <form method="POST" action="{{ route('register') }}">
             @csrf
 

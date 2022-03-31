@@ -2,6 +2,7 @@
     <x-jet-authentication-card>
         <x-slot name="logo">
             <x-jet-authentication-card-logo />
+            
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />
@@ -11,7 +12,9 @@
                 {{ session('status') }}
             </div>
         @endif
-
+            <div> 
+            <h1 class="text-center">Log in to your account</h1>
+        </div>
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
