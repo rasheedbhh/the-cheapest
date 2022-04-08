@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categories;
+use App\Models\Orders;
 use App\Models\Products;
 use App\Models\Stores;
 use App\Models\Subcategory;
@@ -106,22 +107,10 @@ class ManagerController extends Controller
         $data['subcategory_id'] = $request->subcategory;  
         $data['image'] = $profile_picture;
         $data['store_id'] = $request->store_id;
-        // $data['status'] = 1;
+        $data['status'] = 1;
         $data['created_at'] = Carbon::now();
         $data['updated_at'] = Carbon::now();
         DB::table('products')->insert($data);
-        // Products::create([
-        //     'name' => $request->name,
-        //     'description' => $request->description,
-        //     'weight' => $request->weight,
-        //     'quantity' => $request->quantity,
-        //     'brand' => $request->brand,
-        //     'price' => $request->price,
-        //     'discount_price' => $request->discount_price,
-        //     'category' => $request->category,
-        //     'image' => $profile_picture,
-        //     'store_id' =>$request->store_id
-        // ]);
         $notification=array(
             'message'=>'Successfully added your product!',
             'alert-type'=>'success'
@@ -201,8 +190,11 @@ class ManagerController extends Controller
         return redirect()->back()->with($notification);
     }
 
-    public function getOrders(){
-
+    public function getOrders(Request $request){
+        $store = Stores::with('manager')->where('manager_id',Auth::user()->id)->first();
+        $store_id = $store->id;
+        $orders = Orders::with('user','product','store')->where('store_id',$store_id)->get();
+        return view('manager.myOrders', compact('orders'));
     }
 
     

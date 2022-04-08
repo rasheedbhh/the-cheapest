@@ -34,7 +34,8 @@ class CreateProductsTable extends Migration
             $table->boolean('status')->default(1);
             $table->boolean('on_sale')->nullable();
             $table->boolean('trending')->nullable();
-            $table->boolean('main_slider')->nullable();
+            $table->boolean('best_seller')->nullable();
+            $table->boolean('weekly_deals')->nullable();
             $table->boolean('mid_slider')->nullable();
             $table->timestamps();
         });

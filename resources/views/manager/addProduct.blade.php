@@ -12,7 +12,7 @@
 <div class="sl-pagebody">
     <div class="sl-page-title">
       <h5>Create Product
-        <a href="" class="btn btn-success btn-sm pull-right">View All Products</a>
+        <a href="{{route('manager.all.products')}}" class="btn btn-success btn-sm pull-right">View All Products</a>
       </h5>
       <p>Add a new product to your store</p>
     </div><!-- sl-page-title -->

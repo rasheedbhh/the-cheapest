@@ -23,6 +23,7 @@ class Products extends Model
         'trending',
         'main_slider',
         'mid_slider',
+        'weekly_deals',
         'weight',
         'status',
         'subcategory_id'
@@ -39,9 +40,12 @@ class Products extends Model
     public function manager(){
         return $this->belongsTo(User::class);
     }
+
   
     public function scopeSearch($query, $search){
-        return $query->where('name', 'LIKE', '%' . $search . "%");
+        return $query->where('brand', 'LIKE', '%' . $search . "%");
     }
+
+
     
 }

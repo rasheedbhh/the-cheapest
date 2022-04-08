@@ -15,7 +15,7 @@
       <div class="card pd-20 pd-sm-40">
 
         <h6 class="card-body-title">My Products
-            <a href="{{route('manager.insert.product')}}" class="btn btn-sm btn-primary" style="float: right;">Add new</a>
+            <a href="{{route('manager.add.product')}}" class="btn btn-sm btn-primary" style="float: right;">Add new</a>
         </h6>
         
 

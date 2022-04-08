@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categories;
+use App\Models\Orders;
 use App\Models\Products;
 use App\Models\Stores;
 use App\Models\Subcategory;
@@ -86,9 +87,19 @@ class AdminController extends Controller
     }
 
     public function insertCategory(Request $request){
+        $image = $request->image;
+
+        if($image){
+            $image_name = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+            Image::make($image)->resize(200,200)->save('images/categories/'.$image_name);
+            $category_image = 'images/categories/'.$image_name;
+        }
+    
         Categories::create(
             [
                 'category_name' => $request->category_name,
+                'popular' => 0,
+                'image' => $category_image,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]);
@@ -111,8 +122,16 @@ class AdminController extends Controller
     }
 
     public function updateCategory(Request $request, $id){
+        $image = $request->image;
+
+        if($image){
+            $image_name = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+            Image::make($image)->resize(200,200)->save('images/categories/'.$image_name);
+            $category_image = 'images/categories/'.$image_name;
+        }
         Categories::where('id', $id)->update([
             'category_name' => $request->category_name,
+            'image' => $category_image,
             'updated_at' => Carbon::now()
         ]);
         $notification=array(
@@ -124,6 +143,24 @@ class AdminController extends Controller
 
     public function deleteCategory($id){
         Categories::where('id',$id)->delete();
+    }
+
+    public function makePopular($id){
+        Categories::where('id',$id)->update(['popular'=>1]);
+        $notification=array(
+            'message'=>'Category is now popular!',
+            'alert-type'=>'info'
+        );
+        return redirect()->back()->with($notification);
+    }
+
+    public function makeNotPopular($id){
+        Categories::where('id',$id)->update(['popular'=>0]);
+        $notification=array(
+            'message'=>'Category is not popular!',
+            'alert-type'=>'error'
+        );
+        return redirect()->back()->with($notification);
     }
 
     //subcategory queries 
@@ -257,6 +294,11 @@ class AdminController extends Controller
         return view('admin.products.index',compact('products'));
     }
 
+    public function getProduct($id){
+        $product = Products::with('category','store','subcategory')->where('id',$id)->first();
+        return view('admin.products.productAttributes',compact('product'));
+    }
+
     public function offSale($id){
         Products::where('id',$id)->update(['on_sale'=>0]);
         $notification=array(
@@ -293,20 +335,20 @@ class AdminController extends Controller
         return redirect()->back()->with($notification);
     }
 
-    public function mainSliderInactive($id){
-        Products::where('id',$id)->update(['main_slider'=>0]);
+    public function best_seller_on($id){
+        Products::where('id',$id)->update(['best_seller'=>1]);
         $notification=array(
-            'message'=>'Product is not diplayed on the main slider!',
-            'alert-type'=>'error'
+            'message'=>'Product is now a best seller!',
+            'alert-type'=>'success'
         );
         return redirect()->back()->with($notification);
     }
 
-    public function mainSliderActive($id){
-        Products::where('id',$id)->update(['main_slider'=>1]);
+    public function best_seller_off($id){
+        Products::where('id',$id)->update(['best_sellerr'=>0]);
         $notification=array(
-            'message'=>'Product is now diplayed on the main slider!',
-            'alert-type'=>'success'
+            'message'=>'Product is not a best seller',
+            'alert-type'=>'error'
         );
         return redirect()->back()->with($notification);
     }
@@ -315,7 +357,7 @@ class AdminController extends Controller
         Products::where('id',$id)->update(['mid_slider'=>0]);
         $notification=array(
             'message'=>'Product is not diplayed on the main slider',
-            'alert-type'=>'error'
+            'alert-type'=>'success'
         );
         return redirect()->back()->with($notification);
     }
@@ -323,8 +365,8 @@ class AdminController extends Controller
     public function midSliderActive($id){
         Products::where('id',$id)->update(['mid_slider'=>1]);
         $notification=array(
-            'message'=>'Product is now diplayed on the main slider!',
-            'alert-type'=>'success'
+            'message'=>'Product is now diplayed on the main slider',
+            'alert-type'=>'error'
         );
         return redirect()->back()->with($notification);
     }
@@ -347,6 +389,24 @@ class AdminController extends Controller
         return redirect()->back()->with($notification);
     }
 
+    public function toggleWeekly($id){
+        Products::where('id',$id)->update(['weekly_deals'=>1]);
+        $notification=array(
+            'message'=>'Product is now on deal of the week!',
+            'alert-type'=>'success'
+        );
+        return redirect()->back()->with($notification);
+    }
+
+    public function offWeekly($id){
+        Products::where('id',$id)->update(['weekly_deals'=>0]);
+        $notification=array(
+            'message'=>'Product is now not on deals of the week!',
+            'alert-type'=>'success'
+        );
+        return redirect()->back()->with($notification);
+    }
+
     public function deleteProduct($id){
         Products::where('id',$id)->delete();
         $notification=array(
@@ -354,6 +414,13 @@ class AdminController extends Controller
             'alert-type'=>'error'
         );
         return redirect()->back()->with($notification);
+    }
+
+ 
+
+    public function getOrders(){
+        $orders = Orders::with('product','user','store')->get();
+        return view('admin.orders.index',compact('orders'));
     }
 
 }

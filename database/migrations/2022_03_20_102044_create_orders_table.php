@@ -18,10 +18,10 @@ class CreateOrdersTable extends Migration
             $table->integer('quantity');
             $table->integer('total_price');
             $table->foreignId('user_id')->unsigned();
-            $table->foreignId('manager_id')->unsigned();
+            $table->foreignId('store_id')->unsigned();
             $table->foreignId('product_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('manager_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('store_id')->references('id')->on('stores')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->timestamps();
         });

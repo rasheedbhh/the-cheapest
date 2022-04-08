@@ -1,7 +1,11 @@
+<title>The Cheapest | Register</title>
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+            <x-slot name="logo">
+                <img src="images/logo.jpg" alt="" style="width: 150px">
+                   <h1 style="font-size: 30px; font-weight:600;">The Cheapest</h1>
+               </x-slot>
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />

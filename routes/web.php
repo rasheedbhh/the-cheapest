@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Laravel\Jetstream\Rules\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,8 @@ Route::group(['middleware' => 'role:admin', 'prefix' => 'admin'], function() {
     Route::get('add/category', 'AdminController@addCategory')->name('add.category');
     Route::post('insert/category', 'AdminController@insertCategory')->name('store.category');
     Route::get('edit/category/{id}', 'AdminController@editCategory');
+    Route::get('popular/{id}', 'AdminController@makePopular');
+    Route::get('notpopular/{id}', 'AdminController@makeNotPopular');
     Route::post('update/category/{id}', 'AdminController@updateCategory');
     Route::get('delete/category/{id}', 'AdminController@deleteCategory');
     //admin/subcategories routes
@@ -52,17 +55,22 @@ Route::group(['middleware' => 'role:admin', 'prefix' => 'admin'], function() {
     Route::post('update/store/{id}', 'AdminController@updateStore');
     Route::get('delete/store/{id}', 'AdminController@deleteStore');
     //admin/products routes
-    Route::get('all/products', 'AdminController@getProducts')->name('all.products');
+    Route::get('all/products', 'AdminController@getProducts')->name('admin.all.products');
+    Route::get('get/product/{id}', 'AdminController@getProduct');
     Route::get('activate/product/{id}', 'AdminController@makeActive');
     Route::get('deactivate/product/{id}', 'AdminController@makeInactive');
     Route::get('onSale/product/{id}', 'AdminController@onSale');
     Route::get('notOnSale/product/{id}', 'AdminController@offSale');
     Route::get('trending/product/{id}', 'AdminController@makeTrending');
     Route::get('notTrending/product/{id}', 'AdminController@offTrending');
-    Route::get('mainSlider/product/{id}', 'AdminController@mainSliderActive');
-    Route::get('notMainslider/product/{id}', 'AdminController@mainSliderInactive');
+    Route::get('best_seller/product/{id}', 'AdminController@best_seller_off');
+    Route::get('not_best_seller/product/{id}', 'AdminController@best_seller_on');
     Route::get('midSlider/product/{id}', 'AdminController@midSliderActive');
-    Route::get('notminSlider/product/{id}', 'AdminController@midSliderInactive');
+    Route::get('notmidSlider/product/{id}', 'AdminController@midSliderInactive');
+    Route::get('weekly/product/{id}', 'AdminController@toggleWeekly');
+    Route::get('notweekly/product/{id}', 'AdminController@offWeekly');
+    //orders
+    Route::get('orders','AdminController@getOrders')->name('admin.orders');
 });
 
 //Manager Routes
@@ -81,7 +89,14 @@ Route::group(['middleware' => 'role:manager', 'prefix' => 'manager'], function()
     Route::get('deactivate/product/{id}', 'ManagerController@makeInactive');
     Route::get('delete/product/{id}', 'ManagerController@deleteProduct');
     Route::get('get/subcategory/{category_id}','ManagerController@getSubcategory');
-
     Route::get('my/orders', 'ManagerController@getOrders')->name('manager.orders');
     Route::get('delete/order/{id}', 'ManagerController@deleteOrder');
 });
+
+Route::group(['middleware' => 'role:user', 'prefix' => 'user'], function() {
+    Route::get('product/view/{id}', 'UserController@getProduct');
+    Route::post('add/to/wishlist', 'UserController@addProduct')->name('add.to.wishlist');
+    Route::get('my/wishlist/{id}', 'UserController@myWishlist')->name('wishlist');
+});
+
+Route::get('all/products', 'UserController@allProducts')->name('all.products');

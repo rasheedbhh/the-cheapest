@@ -145,7 +145,7 @@
         </a><!-- sl-menu-link -->
         <ul class="sl-menu-sub nav flex-column">
           <li class="nav-item">
-            <a href="" class="nav-link">All orders</a></li>
+            <a href="{{route('admin.orders')}}" class="nav-link">All orders</a></li>
         </ul>   
          @endcan
          @can('manager')
@@ -191,9 +191,24 @@
         </a><!-- sl-menu-link -->
         <ul class="sl-menu-sub nav flex-column">
           <li class="nav-item">
-            <a href="{{route('manager.orders')}}" class="nav-link">All orders</a></li>
+            <a href="{{url('manager/my/orders')}}" class="nav-link">All orders</a></li>
         </ul> 
          @endcan
+         @can('user')
+         <a href="" class="sl-menu-link active">
+          <div class="sl-menu-item">
+            <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
+            <span class="menu-item-label">My Wishlist</span>
+          </div><!-- menu-item -->
+        </a><!-- sl-menu-link -->   
+
+        <a href="{{route('home')}}" class="sl-menu-link ">
+          <div class="sl-menu-item">
+            <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
+            <span class="menu-item-label">Home</span>
+          </div><!-- menu-item -->
+        </a><!-- sl-menu-link -->   
+        @endcan 
  </div><!-- sl-sideleft-menu -->
   
        <br>
