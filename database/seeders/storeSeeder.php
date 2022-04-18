@@ -23,6 +23,7 @@ class storeSeeder extends Seeder
                 'phone_number' => '05323436',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
+                'status' => 2
 
             ]
             );

@@ -34,5 +34,8 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('user', function(User $user){
             return $user->role_id == 3 ;
         });
+        Gate::define('pending', function(User $user){
+            return $user->role_id == 4 ;
+        });
     }
 }

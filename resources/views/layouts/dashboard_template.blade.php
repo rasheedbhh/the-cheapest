@@ -132,6 +132,8 @@
         <ul class="sl-menu-sub nav flex-column">
           <li class="nav-item">
             <a href="{{route('add.store')}}" class="nav-link">Create store</a></li>
+            <li class="nav-item">
+              <a href="{{route('requests.stores')}}" class="nav-link">Store Requests</a></li> 
           <li class="nav-item">
             <a href="{{route('all.stores')}}" class="nav-link">All stores</a></li>
         </ul>
@@ -194,6 +196,20 @@
             <a href="{{url('manager/my/orders')}}" class="nav-link">All orders</a></li>
         </ul> 
          @endcan
+         @can('pending')
+         <a href="{{route('home')}}" class="sl-menu-link active">
+          <div class="sl-menu-item">
+            <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
+            <span class="menu-item-label">No Acceess yet</span>
+          </div><!-- menu-item -->
+        </a><!-- sl-menu-link -->    
+      
+        <ul class="sl-menu-sub nav flex-column">
+          <li class="nav-item">
+            <a href="{{route('manager.edit.store')}}" class="nav-link">Edit store info</a></li>
+        </ul> 
+         @endcan
+
          @can('user')
          <a href="" class="sl-menu-link active">
           <div class="sl-menu-item">

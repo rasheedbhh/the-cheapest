@@ -26,14 +26,20 @@ class LoginController extends Controller
         }
         if(Auth::user()->role_id == 2){
             $store = Stores::with('manager')->where('manager_id',Auth::user()->id)->first();
-            $store_id = $store->id;
-            $products = Products::with('category','subcategory','store')->where('store_id',$store_id)->get();
-            $orders = Orders::with('product','user','store')->where('store_id',$store_id)->get();  
-            $monthly_orders = Orders::with('product','user','store')->where('store_id',$store_id)->whereMonth('created_at',Carbon::now()->month)->get();
-            $yearly_orders = Orders::with('product','user','store')->where('store_id',$store_id)->whereYear('created_at',Carbon::now()->year)->get();
-            // dd($monthly_orders,$yearly_orders);
-      
+            if ($store != NULL) {
+                $store_id = $store->id;
+                $products = Products::with('category','subcategory','store')->where('store_id',$store_id)->get();
+                $orders = Orders::with('product','user','store')->where('store_id',$store_id)->get();  
+                $monthly_orders = Orders::with('product','user','store')->where('store_id',$store_id)->whereMonth('created_at',Carbon::now()->month)->get();
+                $yearly_orders = Orders::with('product','user','store')->where('store_id',$store_id)->whereYear('created_at',Carbon::now()->year)->get();
+                // dd($monthly_orders,$yearly_orders);
+          
                 return view('manager.index',compact('store','products','orders','monthly_orders','yearly_orders'));
+            } else {
+                return view('manager.index',compact('store'));
+            }
+            
+
             }
             
         
@@ -45,6 +51,10 @@ class LoginController extends Controller
             
             return view('user.index',compact('stores','products','categories','subcategories'));
      }   
+     if (Auth::user()->role_id ==  4) {
+        $store = Stores::with('manager')->where('manager_id',Auth::user()->id)->first();
+         return view('manager.index',compact('store'));
+     }
 
     }
 }

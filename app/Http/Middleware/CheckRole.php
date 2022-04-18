@@ -27,6 +27,10 @@ class CheckRole
         if ($role == 'user' && auth()->user()->role_id != 3) {
             abort(403);
         }
+        if($role == 'pending'  && auth()->user()->role_id != 4 )
+        {
+            abort(403);
+        }
         return $next($request);
     }
 }

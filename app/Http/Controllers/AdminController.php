@@ -217,13 +217,38 @@ class AdminController extends Controller
     //Store Queries
 
     public function getStores(){
-        $stores = Stores::orderBy('created_at','desc')->with('manager')->get();
+        $stores = Stores::where('status',2)->orderBy('created_at','desc')->with('manager')->get();
         return view('admin.store.all',compact('stores'));
     }
 
     public function addStore(){
         $managers = User::where('role_id',2)->get();
         return view('admin.store.add',compact('managers'));
+    }
+
+    public function storeRequests(){
+        $stores = Stores::where('status',1)->with('manager')->get();
+        return view('admin.store.requests',compact('stores'));
+    }
+
+    public function acceptRequest($id){
+       Stores::where('id',$id)->with('manager')->update(['status'=>2]);
+       $store =  Stores::where('id',$id)->with('manager')->first();
+        User::where('id',$store->manager->id)->update(['role_id'=>2]);
+        $notification=array(
+            'message'=>'Request accepted successfully!',
+            'alert-type'=>'success'
+        );
+        return redirect()->back()->with($notification);
+    }
+
+    public function declineRequest($id){
+        Stores::where('id',$id)->with('manager')->update(['status'=>0]);
+        $notification=array(
+            'message'=>'Request declined!',
+            'alert-type'=>'error'
+        );
+        return redirect()->back()->with($notification);
     }
 
     public function insertStore(Request $request){

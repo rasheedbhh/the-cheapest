@@ -1,6 +1,6 @@
 @extends('layouts.dashboard_template')
 @section('content')
-<title>The Cheapest | Admin | All Stores</title>  
+<title>The Cheapest | Admin | Store requests</title>  
     <div class="sl-mainpanel">
         <div class="sl-pagebody">
             <div class="sl-page-title">
@@ -9,13 +9,6 @@
             </div><!-- sl-page-title -->
       
             <div class="card pd-20 pd-sm-40">
-      
-              <h6 class="card-body-title">Stores
-                  <a href="{{route('add.store')}}" class="btn btn-sm btn-warning" style="float: right;" >
-                    Add new store</a>
-              </h6>
-              
-      
               <div class="table-wrapper">
                 <table id="datatable1" class="table display responsive nowrap">
                   <thead>
@@ -25,6 +18,8 @@
                         <th class="wd-15p">Phone</th>
                         <th class="wd-15p">Manager</th>
                         <th class="wd-15p">Address</th>
+                        <th class="wd-15p">Legal Document</th>
+                        <th class="wd-15p">Status</th>
                         <th class="wd-15p">Created At</th>
                         <th class="wd-20p">Action</th>
                      </tr>
@@ -37,12 +32,14 @@
                                 <td>{{$store->phone_number}}</td>
                                 <td>{{$store->manager->name}}</td>
                                 <td>{{$store->address}}</td>
+                                <td> <img src="{{asset($store->profile_picture)}}" alt="Legal proof" width="150px;"> </td>
+                                <td><span class="badge badge-danger">Pending</span> </td>
                                 <td>
                                     <p >{{ \Carbon\Carbon::parse($store->created_at)->diffForHumans()}}</p>
                                 </td>
                                 <td>    
-                                    <a href="{{url('admin/edit/store/'.$store->id)}}" class="btn btn-info btn-sm">Edit</a>
-                                    <a href="{{url('admin/delete/store/'.$store->id)}}" class="btn btn-danger btn-sm" id="delete">Delete</a>
+                                    <a href="{{url('admin/accept/request/'.$store->id)}}" class="btn btn-success btn-sm" title="Accept request">Accept</a>
+                                    <a href="{{url('admin/decline/request/'.$store->id)}}" class="btn btn-danger btn-sm" title="Decline request">Decline</a>
                 
                                 </td>
                                

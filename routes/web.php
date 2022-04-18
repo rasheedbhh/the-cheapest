@@ -50,6 +50,9 @@ Route::group(['middleware' => 'role:admin', 'prefix' => 'admin'], function() {
     // admin/store routes
     Route::get('all/stores', 'AdminController@getStores')->name('all.stores');
     Route::get('add/store', 'AdminController@addStore')->name('add.store');
+    Route::get('requests/stores', 'AdminController@storeRequests')->name('requests.stores');
+    Route::get('accept/request/{id}', 'AdminController@acceptRequest');
+    Route::get('decline/request/{id}','AdminController@declineRequest')->name('decline.request');
     Route::post('insert/store', 'AdminController@insertStore')->name('insert.store');
     Route::get('edit/store/{id}', 'AdminController@editStore');
     Route::post('update/store/{id}', 'AdminController@updateStore');

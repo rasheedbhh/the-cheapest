@@ -1,7 +1,26 @@
 @extends('layouts.dashboard_template')
 <title>The Cheapest | Manager | Home</title>
+
 @section('content')
 
+@can('pending')
+<div class="sl-mainpanel">
+<div class="sl-pagebody">
+  @if ($store->status == 1)
+       <h1>Please wait till the admin accepts your request</h1>
+  @else
+      <h1 class="text-danger"> Sorry but your request has been declined</h1>
+  @endif
+ 
+  
+</div>
+      
+      
+</div><!-- sl-mainpanel -->
+
+@endcan
+
+@can('manager')
     @if ($store != NULL)
         <div class="sl-mainpanel"> 
           <div class="sl-pagebody">
@@ -96,7 +115,7 @@
     
           </div><!-- sl-pagebody -->
         </div>
-    @else
+    @else 
   <!-- ########## START: MAIN PANEL ########## -->
 <div class="sl-mainpanel">
     <nav class="breadcrumb sl-breadcrumb">
@@ -138,7 +157,7 @@
               </div><!-- col-4 -->
               <div class="col-lg-6 mt-4">
                 <div class="form-group mg-b-10-force">
-                  <label class="form-control-label">Profile Picture </label>
+                  <label class="form-control-label">Legal Proof </label>
                   <label class="custom-file">
                     <input type="file" id="file" class="custom-file-input" name="profile_picture" 
                     onchange="readURL(this)">
@@ -158,8 +177,9 @@
       </form>
   </div><!-- sl-mainpanel -->
 </div>
-  <!-- ########## END: MAIN PANEL ########## -->   
-@endif
+  <!-- ########## END: MAIN PANEL ########## -->
+  @endif
+  @endcan
  
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>

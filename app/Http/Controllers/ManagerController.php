@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Categories;
 use App\Models\Orders;
 use App\Models\Products;
+use App\Models\Requests;
 use App\Models\Stores;
 use App\Models\Subcategory;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Auth\Access\Gate;
 use Illuminate\Http\Request;
@@ -37,11 +39,13 @@ class ManagerController extends Controller
             'manager_id' => Auth::user()->id,
             'address' => $request->address,
             'profile_picture' => $profile_picture,
+            'status' => 1,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
+        User::where('id',Auth::user()->id)->update(['role_id' => 4]);
         $notification=array(
-            'message'=>'Successfully created your store!',
+            'message'=>'Successfully sent your request!',
             'alert-type'=>'success'
         );
         return redirect()->back()->with($notification);
